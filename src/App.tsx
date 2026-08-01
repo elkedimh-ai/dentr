@@ -1,186 +1,97 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Calendar, Grid, Layers } from 'lucide-react';
-import { Group, Course, ScheduleFilter } from './types/schedule';
-import { fetchGroups, fetchSchedule, saveCourse, deleteCourse } from './services/api';
-
-import { Navbar } from './components/Navbar';
-import { NextCourseHero } from './components/NextCourseHero';
-import { DailyAgenda } from './components/DailyAgenda';
-import { WeeklyGrid } from './components/WeeklyGrid';
-import { AdminModal } from './components/AdminModal';
+import React, { useState, useEffect } from 'react';
+import { TopNavbar } from './components/TopNavbar';
+import { PresetTabBar } from './components/PresetTabBar';
+import { MainOverviewTab } from './components/MainOverviewTab';
+import { DailyAgendaTab } from './components/DailyAgendaTab';
+import { WeeklyMatrixTab } from './components/WeeklyMatrixTab';
+import { RotationGroupsTab } from './components/RotationGroupsTab';
+import { AdminManagementTab } from './components/AdminManagementTab';
+import { dentrStorage } from './services/dentrStorage';
+import { mockDentistrySessions, mockUrgentAlerts } from './data/mockDentistryData';
+import { PresetTabId, StudentGroupId, DentistrySession } from './types/dentr';
 
 export const App: React.FC = () => {
-  const [groups, setGroups] = useState<Group[]>([]);
-  const [filter, setFilter] = useState<ScheduleFilter>({
-    groupId: '',
-    subgroup: 'All',
-    searchQuery: ''
-  });
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [viewMode, setViewMode] = useState<'daily' | 'weekly'>('daily');
-  const [selectedDay, setSelectedDay] = useState<number>(() => {
-    const today = new Date().getDay();
-    // Convert 0=Sunday..6=Saturday to 0=Monday..6=Sunday
-    return (today + 6) % 7;
-  });
-  const [isAdminOpen, setIsAdminOpen] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  // Load initial groups
-  useEffect(() => {
-    const loadGroups = async () => {
-      try {
-        const loadedGroups = await fetchGroups();
-        setGroups(loadedGroups);
-        if (loadedGroups.length > 0) {
-          setFilter(prev => ({
-            ...prev,
-            groupId: loadedGroups[0].id,
-            subgroup: loadedGroups[0].subgroups[0] || 'All'
-          }));
-        }
-      } catch (err) {
-        console.error('Failed to load groups:', err);
-      }
-    };
-    loadGroups();
-  }, []);
-
-  // Load schedule whenever group or subgroup changes
-  const loadSchedule = useCallback(async (groupId: string, subgroup: string) => {
-    if (!groupId) return;
-    setIsLoading(true);
-    try {
-      const data = await fetchSchedule(groupId, subgroup);
-      setCourses(data);
-    } catch (err) {
-      console.error('Failed to load schedule:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  const [activeTab, setActiveTab] = useState<PresetTabId>(() => dentrStorage.getActiveTab());
+  const [selectedGroup, setSelectedGroup] = useState<StudentGroupId>(() => dentrStorage.getSelectedGroup());
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => dentrStorage.getTheme());
+  const [isAdminAuth, setIsAdminAuth] = useState<boolean>(() => dentrStorage.isAdminAuthenticated());
+  const [sessions, setSessions] = useState<DentistrySession[]>(mockDentistrySessions);
 
   useEffect(() => {
-    if (filter.groupId) {
-      loadSchedule(filter.groupId, filter.subgroup);
+    dentrStorage.setTheme(theme);
+  }, [theme]);
+
+  const handleSelectGroup = (g: StudentGroupId) => {
+    setSelectedGroup(g);
+    dentrStorage.setSelectedGroup(g);
+  };
+
+  const handleTabChange = (t: PresetTabId) => {
+    setActiveTab(t);
+    dentrStorage.setActiveTab(t);
+  };
+
+  const handleToggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const handleAuthenticateAdmin = (pin: string): boolean => {
+    if (pin === '1234') {
+      setIsAdminAuth(true);
+      dentrStorage.setAdminAuthenticated(true);
+      return true;
     }
-  }, [filter.groupId, filter.subgroup, loadSchedule]);
+    return false;
+  };
 
-  const handleRefresh = useCallback(() => {
-    if (filter.groupId) {
-      loadSchedule(filter.groupId, filter.subgroup);
-    }
-  }, [filter.groupId, filter.subgroup, loadSchedule]);
-
-  const handleSaveCourse = useCallback(async (courseToSave: Course) => {
-    await saveCourse(courseToSave);
-    if (filter.groupId) {
-      await loadSchedule(filter.groupId, filter.subgroup);
-    }
-  }, [filter.groupId, filter.subgroup, loadSchedule]);
-
-  const handleDeleteCourse = useCallback(async (courseId: string) => {
-    await deleteCourse(courseId);
-    if (filter.groupId) {
-      await loadSchedule(filter.groupId, filter.subgroup);
-    }
-  }, [filter.groupId, filter.subgroup, loadSchedule]);
-
-  // Filter courses by search query
-  const filteredCourses = useMemo(() => {
-    if (!filter.searchQuery.trim()) return courses;
-    const query = filter.searchQuery.toLowerCase().trim();
-    return courses.filter(c =>
-      c.title.toLowerCase().includes(query) ||
-      c.code.toLowerCase().includes(query) ||
-      c.professor.toLowerCase().includes(query) ||
-      c.room.toLowerCase().includes(query)
-    );
-  }, [courses, filter.searchQuery]);
-
-  const activeGroup = groups.find(g => g.id === filter.groupId);
+  const handleToggleSessionStatus = (sessionId: string, newStatus: any) => {
+    setSessions(prev => prev.map(s => s.id === sessionId ? { ...s, status: newStatus } : s));
+  };
 
   return (
-    <div className="app-wrapper">
-      <Navbar
-        groups={groups}
-        filter={filter}
-        onFilterChange={setFilter}
-        onRefresh={handleRefresh}
-        onOpenAdmin={() => setIsAdminOpen(true)}
-        isLoading={isLoading}
+    <div style={{ minHeight: '100vh', background: 'var(--bg-app)', color: 'var(--text-primary)' }}>
+      <TopNavbar
+        selectedGroup={selectedGroup}
+        onSelectGroup={handleSelectGroup}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
+        isAdminAuth={isAdminAuth}
+        alertCount={mockUrgentAlerts.length}
       />
-
-      <main className="main-content">
-        <NextCourseHero courses={courses} />
-
-        <div className="view-header">
-          <div className="view-title-group">
-            <Layers className="w-5 h-5 text-cyan-400" />
-            <h2 className="view-title">
-              {activeGroup ? `${activeGroup.name} Schedule` : 'Class Schedule'}
-            </h2>
-            {filter.searchQuery && (
-              <span className="badge-subgroup" style={{ marginLeft: '0.5rem' }}>
-                Filtered: "{filter.searchQuery}"
-              </span>
-            )}
-          </div>
-
-          <div className="view-switcher">
-            <button
-              className={`view-switch-btn ${viewMode === 'daily' ? 'active' : ''}`}
-              onClick={() => setViewMode('daily')}
-              title="Switch to Daily Agenda View"
-            >
-              <Calendar className="w-4 h-4" />
-              <span>Daily Agenda</span>
-            </button>
-            <button
-              className={`view-switch-btn ${viewMode === 'weekly' ? 'active' : ''}`}
-              onClick={() => setViewMode('weekly')}
-              title="Switch to Weekly Timetable Grid"
-            >
-              <Grid className="w-4 h-4" />
-              <span>Weekly Grid</span>
-            </button>
-          </div>
-        </div>
-
-        {viewMode === 'daily' ? (
-          <DailyAgenda
-            courses={filteredCourses}
-            selectedDay={selectedDay}
-            onDaySelect={setSelectedDay}
+      <PresetTabBar
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+        urgentAlertCount={mockUrgentAlerts.length}
+      />
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem 3rem' }}>
+        {activeTab === 'overview' && (
+          <MainOverviewTab
+            sessions={sessions}
+            alerts={mockUrgentAlerts}
+            selectedGroup={selectedGroup}
+            onNavigateTab={handleTabChange}
           />
-        ) : (
-          <WeeklyGrid courses={filteredCourses} />
+        )}
+        {activeTab === 'daily' && (
+          <DailyAgendaTab sessions={sessions} selectedGroup={selectedGroup} />
+        )}
+        {activeTab === 'weekly' && (
+          <WeeklyMatrixTab sessions={sessions} selectedGroup={selectedGroup} />
+        )}
+        {activeTab === 'rotations' && (
+          <RotationGroupsTab />
+        )}
+        {activeTab === 'admin' && (
+          <AdminManagementTab
+            isAdminAuth={isAdminAuth}
+            onAuthenticate={handleAuthenticateAdmin}
+            sessions={sessions}
+            onToggleStatus={handleToggleSessionStatus}
+          />
         )}
       </main>
-
-      <footer className="app-footer">
-        <div className="app-footer-content">
-          <span>© 2026 ClassSchedule Platform • Real-time Academic Timetables</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8125rem' }}>
-            <span className="hero-label-pulse" />
-            <span>
-              Group: <strong>{activeGroup?.name || 'Loading...'}</strong> ({filter.subgroup})
-            </span>
-          </div>
-        </div>
-      </footer>
-
-      <AdminModal
-        isOpen={isAdminOpen}
-        onClose={() => setIsAdminOpen(false)}
-        courses={courses}
-        groups={groups}
-        onSaveCourse={handleSaveCourse}
-        onDeleteCourse={handleDeleteCourse}
-      />
     </div>
   );
 };
 
 export default App;
-
