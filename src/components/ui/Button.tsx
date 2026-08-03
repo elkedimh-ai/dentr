@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
     secondary: { background: 'var(--bg-surface-secondary)', color: 'var(--text-primary)', borderColor: 'var(--color-border)' },
     outline: { background: 'transparent', color: 'var(--color-secondary)', borderColor: 'var(--color-secondary)' },
     ghost: { background: 'transparent', color: 'var(--text-secondary)', borderColor: 'transparent' },
-    danger: { background: '#EF4444', color: 'white', borderColor: '#EF4444' },
+    danger: { background: 'var(--status-cancelled-bg)', color: 'var(--status-cancelled-text)', borderColor: 'var(--status-cancelled-border)' },
   };
 
   return (

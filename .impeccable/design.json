@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-01T23:16:35Z",
+  "title": "Design System: Dentr",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Clinical Cyan-Teal", "canonical": "#0891B2", "tonalRamp": ["#042F2E", "#115E59", "#0F766E", "#0D9488", "#14B8A6", "#2DD4BF", "#5EEAD4", "#CCFBF1"] },
+      "secondary": { "role": "secondary", "displayName": "Vibrant Cyan", "canonical": "#22D3EE", "tonalRamp": ["#083344", "#164E63", "#155E75", "#0E7490", "#06B6D4", "#22D3EE", "#67E8F9", "#CFFAFE"] },
+      "accent": { "role": "accent", "displayName": "Health Emerald", "canonical": "#10B981", "tonalRamp": ["#022C22", "#064E3B", "#047857", "#059669", "#10B981", "#34D399", "#6EE7B7", "#D1FAE5"] },
+      "background": { "role": "neutral", "displayName": "Midnight OLED Dark", "canonical": "#020617", "tonalRamp": ["#020617", "#0F172A", "#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#F8FAFC"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display Countdown", "purpose": "Hero live session countdown numbers only." },
+      "headline": { "displayName": "Section Headline", "purpose": "Navigation headers and section titles." },
+      "title": { "displayName": "Course Title", "purpose": "Session names and rotation card titles." },
+      "body": { "displayName": "Body Text", "purpose": "Clinical checklists, equipment items, and professor notes." },
+      "label": { "displayName": "Status Label", "purpose": "Session type pills and status badges." }
+    },
+    "shadows": [
+      { "name": "shadow-sm", "value": "0 1px 2px rgba(0, 0, 0, 0.4)", "purpose": "Subtle border lift." },
+      { "name": "shadow-md", "value": "0 4px 12px rgba(0, 0, 0, 0.5)", "purpose": "Default card elevation." },
+      { "name": "shadow-lg", "value": "0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(8, 145, 178, 0.15)", "purpose": "Interactive hover glow." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Standard easing for state transitions." },
+      { "name": "transition-fast", "value": "150ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Fast hover and button press feedback." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary action button with cyan-teal fill and subtle press animation.",
+      "html": "<button class=\"ds-btn-primary\">START CLINIC</button>",
+      "css": ".ds-btn-primary { background: #0891B2; color: #FFFFFF; font-family: Figtree, sans-serif; font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { background: #06B6D4; transform: translateY(-1px); }"
+    },
+    {
+      "name": "Glass Card Container",
+      "kind": "card",
+      "refersTo": "card-glass",
+      "description": "Translucent glass container with 12px blur and subtle cyan hover glow.",
+      "html": "<div class=\"ds-card-glass\"><h3>phantom lab — chair 14</h3><p>Typodont & rubber dam required</p></div>",
+      "css": ".ds-card-glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; color: #F8FAFC; font-family: Noto Sans, sans-serif; transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-card-glass:hover { border-color: #22D3EE; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.6), 0 0 15px rgba(8,145,178,0.15); transform: translateY(-2px); }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Uppercase tracked pill status badge for session state.",
+      "html": "<span class=\"ds-badge ds-badge-scheduled\">SCHEDULED</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 9999px; font-family: Figtree, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; } .ds-badge-scheduled { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }"
+    },
+    {
+      "name": "Session Type Pill",
+      "kind": "chip",
+      "refersTo": "session-pill",
+      "description": "Color-coded session type identifier pill.",
+      "html": "<span class=\"ds-session-pill ds-pill-phantom\">PHANTOM LAB</span>",
+      "css": ".ds-session-pill { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 8px; font-family: Figtree, sans-serif; font-size: 12px; font-weight: 600; } .ds-pill-phantom { background: rgba(8, 145, 178, 0.15); color: #0891B2; border: 1px solid rgba(8, 145, 178, 0.3); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clinical Sanctuary",
+    "overview": "Dentr operates in Operate Mode (high scanability, rapid task completion under tight clinical deadlines). It implements a Dual Theme System designed specifically for dentistry students moving between dim lecture halls, phantom labs, and bright outdoor clinics.",
+    "keyCharacteristics": [
+      "Tabular Live Countdown: 44px bold Figtree numbers for live session countdowns.",
+      "Dense Dashboard Scale: 8pt/4pt compact grid density tailored for quick glanceability.",
+      "Clinical Session Type Pill System: Color-coded badges for Lectures, Phantom Labs, Clinical Practice, and Exams."
+    ],
+    "rules": [
+      { "name": "The Single Accent Dominance Rule", "body": "The primary clinical teal accent is used on ≤15% of any given screen. Its rarity guarantees instant optical focus on upcoming course schedules.", "section": "colors" },
+      { "name": "The Tabular Number Rule", "body": "All countdown timers, hour markers, and room/chair numbers must use tabular numbers to eliminate layout shifts during live updates.", "section": "typography" },
+      { "name": "The Glass Blur Invariant Rule", "body": "Translucent containers must maintain a 12px backdrop blur in dark mode and 8px in light mode to preserve background contrast behind scrolling cards.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use font-variant-numeric: tabular-nums on all countdown clocks and timers.",
+      "Do maintain a minimum 4.5:1 text contrast ratio in both Dark Glassmorphism and Daylight Light Mode.",
+      "Do display required equipment lists as pill tags on clinical practice and phantom lab session cards."
+    ],
+    "donts": [
+      "Don't obscure session status with color alone; always pair status colors with descriptive text badges.",
+      "Don't use raw unstyled browser inputs; always apply Input or Button design primitives.",
+      "Don't allow horizontal scrollbars on mobile viewport screens."
+    ]
+  }
+}

@@ -11,24 +11,24 @@ export const RotationGroupsTab: React.FC = () => {
       </h3>
       {mockRotationAssignments.map((rot) => (
         <Card key={rot.departmentId} style={{ padding: '1.25rem' }}>
-          <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-secondary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-lg)', fontWeight: 700, color: 'var(--color-secondary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Activity className="w-5 h-5" /> {rot.departmentName}
           </h4>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
             <div style={{ background: 'var(--bg-surface-secondary)', padding: '0.85rem', borderRadius: 'var(--radius-md)' }}>
-              <h5 style={{ fontWeight: 700, fontSize: '0.875rem', color: '#34D399' }}>Group A</h5>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-primary)', marginTop: '0.25rem' }}>{rot.groupA.chairRange}</p>
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Supervisor: {rot.groupA.supervisor}</p>
+              <h5 style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--status-normal-text)' }}>Group A</h5>
+              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-primary)', marginTop: '0.25rem' }}>{rot.groupA.chairRange}</p>
+              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>Supervisor: {rot.groupA.supervisor}</p>
             </div>
             <div style={{ background: 'var(--bg-surface-secondary)', padding: '0.85rem', borderRadius: 'var(--radius-md)' }}>
-              <h5 style={{ fontWeight: 700, fontSize: '0.875rem', color: '#60A5FA' }}>Group B</h5>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-primary)', marginTop: '0.25rem' }}>{rot.groupB.chairRange}</p>
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Supervisor: {rot.groupB.supervisor}</p>
+              <h5 style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-secondary)' }}>Group B</h5>
+              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-primary)', marginTop: '0.25rem' }}>{rot.groupB.chairRange}</p>
+              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>Supervisor: {rot.groupB.supervisor}</p>
             </div>
             <div style={{ background: 'var(--bg-surface-secondary)', padding: '0.85rem', borderRadius: 'var(--radius-md)' }}>
-              <h5 style={{ fontWeight: 700, fontSize: '0.875rem', color: '#FBBF24' }}>Group C</h5>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-primary)', marginTop: '0.25rem' }}>{rot.groupC.chairRange}</p>
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Supervisor: {rot.groupC.supervisor}</p>
+              <h5 style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--status-chair-changed-text)' }}>Group C</h5>
+              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-primary)', marginTop: '0.25rem' }}>{rot.groupC.chairRange}</p>
+              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>Supervisor: {rot.groupC.supervisor}</p>
             </div>
           </div>
         </Card>

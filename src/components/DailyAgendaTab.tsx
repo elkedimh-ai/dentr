@@ -19,14 +19,14 @@ export const DailyAgendaTab: React.FC<DailyAgendaTabProps> = ({ sessions, select
         Daily Session Timeline
       </h3>
       {filtered.map((session) => (
-        <Card key={session.id} style={{ borderLeft: `4px solid var(--session-${session.type === 'phantom_lab' ? 'phantom' : session.type})` }}>
+        <Card key={session.id}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
                 <SessionPill type={session.type} />
                 <Badge status={session.status} />
               </div>
-              <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', fontWeight: 700 }}>{session.title}</h4>
+              <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-lg)', fontWeight: 700 }}>{session.title}</h4>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--color-secondary)' }}>
               <Clock className="w-4 h-4" /> {session.startTime} - {session.endTime}

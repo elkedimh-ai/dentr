@@ -1,0 +1,276 @@
+/**
+ * Dentr Design System Tokens - Generated via UI-UX-PRO-MAX Engine
+ * Persisted Source: /root/dentr/design-system/dentr/MASTER.md
+ * Product: Dentr (Dentistry Promotion Hub)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Noto+Sans:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================================================
+   1. COLOR PALETTE & THEME TOKENS
+   ========================================================================== */
+
+/* Dark Glassmorphism / OLED Midnight Mode (Default) */
+[data-theme="dark"], :root {
+  --color-primary: #0891B2;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #22D3EE;
+  --color-accent: #10B981;       /* Health / Clinical Emerald */
+  --color-background: #020617;   /* Midnight OLED Dark */
+  --color-foreground: #F8FAFC;
+  --color-muted: #1E293B;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-ring: #0891B2;
+
+  --bg-app: #020617;
+  --bg-surface-primary: rgba(15, 23, 42, 0.8);
+  --bg-surface-secondary: rgba(30, 41, 59, 0.7);
+  --bg-surface-hover: rgba(30, 41, 59, 0.9);
+  --bg-glass: rgba(2, 6, 23, 0.75);
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-tertiary: #64748B;
+  --text-inverse: #020617;
+  --text-teal: #22D3EE;
+
+  /* Clinical Session Types */
+  --session-lecture: #3B82F6;
+  --session-phantom-lab: #0891B2;
+  --session-clinical: #10B981;
+  --session-exam: #EC4899;
+
+  /* Status Badges */
+  --status-normal-bg: rgba(16, 185, 129, 0.15);
+  --status-normal-text: #34D399;
+  --status-normal-border: rgba(16, 185, 129, 0.3);
+
+  --status-cancelled-bg: rgba(239, 68, 68, 0.15);
+  --status-cancelled-text: #FCA5A5;
+  --status-cancelled-border: rgba(239, 68, 68, 0.3);
+
+  --status-chair-changed-bg: rgba(245, 158, 11, 0.15);
+  --status-chair-changed-text: #FDE047;
+  --status-chair-changed-border: rgba(245, 158, 11, 0.3);
+
+  --status-rescheduled-bg: rgba(139, 92, 246, 0.15);
+  --status-rescheduled-text: #C4B5FD;
+  --status-rescheduled-border: rgba(139, 92, 246, 0.3);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(8, 145, 178, 0.15);
+  --glass-blur: blur(12px);
+}
+
+/* Medical Light Mode Theme Override */
+[data-theme="light"] {
+  --color-primary: #0891B2;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #0284C7;
+  --color-accent: #059669;
+  --color-background: #F0FDFA;   /* Medical Light Soft Mint/Teal */
+  --color-foreground: #134E4A;
+  --color-muted: #E8F1F6;
+  --color-border: #CCFBF1;
+  --color-ring: #0891B2;
+
+  --bg-app: #F0FDFA;
+  --bg-surface-primary: #FFFFFF;
+  --bg-surface-secondary: #E8F1F6;
+  --bg-surface-hover: #F8FAFC;
+  --bg-glass: rgba(255, 255, 255, 0.9);
+
+  --text-primary: #134E4A;
+  --text-secondary: #334155;
+  --text-tertiary: #64748B;
+  --text-inverse: #FFFFFF;
+  --text-teal: #0891B2;
+
+  --session-lecture: #2563EB;
+  --session-phantom-lab: #0891B2;
+  --session-clinical: #059669;
+  --session-exam: #DB2777;
+
+  --status-normal-bg: #ECFDF5;
+  --status-normal-text: #047857;
+  --status-normal-border: #A7F3D0;
+
+  --status-cancelled-bg: #FEF2F2;
+  --status-cancelled-text: #991B1B;
+  --status-cancelled-border: #FCA5A5;
+
+  --status-chair-changed-bg: #FFFBEB;
+  --status-chair-changed-text: #92400E;
+  --status-chair-changed-border: #FDE68A;
+
+  --status-rescheduled-bg: #F5F3FF;
+  --status-rescheduled-text: #5B21B6;
+  --status-rescheduled-border: #DDD6FE;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --glass-blur: blur(8px);
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY SYSTEM (UI-UX-PRO-MAX: Figtree Headings + Noto Sans Body)
+   ========================================================================== */
+
+:root {
+  --font-heading: 'Figtree', sans-serif;
+  --font-body: 'Noto Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 2rem;       /* 32px */
+  --text-4xl: 2.75rem;    /* 44px - Countdown Display */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+}
+
+/* ==========================================================================
+   3. SPACING SYSTEM (UI-UX-PRO-MAX Density Dial 8/10 - Dense Dashboard Scale)
+   ========================================================================== */
+
+:root {
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+}
+
+/* ==========================================================================
+   4. MOTION & ANIMATION (UI-UX-PRO-MAX Motion Dial 5/10 - Standard Easing)
+   ========================================================================== */
+
+:root {
+  --ease-back-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 150ms var(--ease-standard);
+  --transition-normal: 250ms var(--ease-standard);
+  --transition-stagger: 350ms var(--ease-back-out);
+}
+
+/* ==========================================================================
+   5. COMPONENT SPECIFICATIONS & PRIMITIVES
+   ========================================================================== */
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Glass Card Primitive */
+.card-glass {
+  background: var(--bg-surface-primary);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-fast);
+}
+
+.card-glass-interactive {
+  cursor: pointer;
+}
+
+.card-glass-interactive:hover {
+  border-color: var(--color-secondary);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.badge-normal {
+  background: var(--status-normal-bg);
+  color: var(--status-normal-text);
+  border-color: var(--status-normal-border);
+}
+
+.badge-cancelled {
+  background: var(--status-cancelled-bg);
+  color: var(--status-cancelled-text);
+  border-color: var(--status-cancelled-border);
+}
+
+.badge-chair-changed {
+  background: var(--status-chair-changed-bg);
+  color: var(--status-chair-changed-text);
+  border-color: var(--status-chair-changed-border);
+}
+
+.badge-rescheduled {
+  background: var(--status-rescheduled-bg);
+  color: var(--status-rescheduled-text);
+  border-color: var(--status-rescheduled-border);
+}
+
+/* Session Type Pills */
+.session-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.session-pill-lecture {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--session-lecture);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.session-pill-phantom {
+  background: rgba(8, 145, 178, 0.15);
+  color: var(--session-phantom-lab);
+  border: 1px solid rgba(8, 145, 178, 0.3);
+}
+
+.session-pill-clinical {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--session-clinical);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.session-pill-exam {
+  background: rgba(236, 72, 153, 0.15);
+  color: var(--session-exam);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+}

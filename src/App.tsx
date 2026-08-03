@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TopNavbar } from './components/TopNavbar';
-import { PresetTabBar } from './components/PresetTabBar';
+import { MobileBottomNavbar } from './components/MobileBottomNavbar';
 import { MainOverviewTab } from './components/MainOverviewTab';
 import { DailyAgendaTab } from './components/DailyAgendaTab';
 import { WeeklyMatrixTab } from './components/WeeklyMatrixTab';
@@ -12,7 +12,7 @@ import { PresetTabId, StudentGroupId, DentistrySession } from './types/dentr';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<PresetTabId>(() => dentrStorage.getActiveTab());
-  const [selectedGroup, setSelectedGroup] = useState<StudentGroupId>(() => dentrStorage.getSelectedGroup());
+  const [selectedGroup] = useState<StudentGroupId>(() => dentrStorage.getSelectedGroup());
   const [theme, setTheme] = useState<'dark' | 'light'>(() => dentrStorage.getTheme());
   const [isAdminAuth, setIsAdminAuth] = useState<boolean>(() => dentrStorage.isAdminAuthenticated());
   const [sessions, setSessions] = useState<DentistrySession[]>(mockDentistrySessions);
@@ -20,11 +20,6 @@ export const App: React.FC = () => {
   useEffect(() => {
     dentrStorage.setTheme(theme);
   }, [theme]);
-
-  const handleSelectGroup = (g: StudentGroupId) => {
-    setSelectedGroup(g);
-    dentrStorage.setSelectedGroup(g);
-  };
 
   const handleTabChange = (t: PresetTabId) => {
     setActiveTab(t);
@@ -51,19 +46,13 @@ export const App: React.FC = () => {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-app)', color: 'var(--text-primary)' }}>
       <TopNavbar
-        selectedGroup={selectedGroup}
-        onSelectGroup={handleSelectGroup}
-        theme={theme}
-        onToggleTheme={handleToggleTheme}
-        isAdminAuth={isAdminAuth}
-        alertCount={mockUrgentAlerts.length}
-      />
-      <PresetTabBar
         activeTab={activeTab}
         onTabChange={handleTabChange}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
         urgentAlertCount={mockUrgentAlerts.length}
       />
-      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem 3rem' }}>
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '1.5rem 1.5rem 3rem' }}>
         {activeTab === 'overview' && (
           <MainOverviewTab
             sessions={sessions}
@@ -90,6 +79,11 @@ export const App: React.FC = () => {
           />
         )}
       </main>
+      <MobileBottomNavbar
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+        urgentAlertCount={mockUrgentAlerts.length}
+      />
     </div>
   );
 };

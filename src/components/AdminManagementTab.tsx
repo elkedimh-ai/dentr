@@ -62,20 +62,20 @@ export const AdminManagementTab: React.FC<AdminManagementTabProps> = ({
   return (
     <div style={{ padding: '1.5rem 0', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Unlock className="w-5 h-5" style={{ color: '#10B981' }} /> Class Rep Admin Management
+        <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-lg)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Unlock className="w-5 h-5" style={{ color: 'var(--color-accent)' }} /> Class Rep Admin Management
         </h3>
         <Badge status="normal" label="AUTHENTICATED" />
       </div>
 
       <Card style={{ padding: '1.25rem' }}>
-        <h4 style={{ fontWeight: 700, fontSize: '1rem', marginBottom: '1rem' }}>Quick Session Status Controller</h4>
+        <h4 style={{ fontWeight: 700, fontSize: 'var(--text-base)', marginBottom: '1rem' }}>Quick Session Status Controller</h4>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           {sessions.map((s) => (
             <div key={s.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem', background: 'var(--bg-surface-secondary)', borderRadius: 'var(--radius-md)' }}>
               <div>
-                <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>{s.title}</span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>({s.location})</span>
+                <span style={{ fontSize: 'var(--text-sm)', fontWeight: 700 }}>{s.title}</span>
+                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>({s.location})</span>
               </div>
               <div style={{ display: 'flex', gap: '0.4rem' }}>
                 <Button size="sm" variant={s.status === 'normal' ? 'primary' : 'secondary'} onClick={() => onToggleStatus(s.id, 'normal')}>Scheduled</Button>
