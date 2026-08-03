@@ -55,3 +55,4 @@ The hero card background and border dynamically adapt according to `nextSession.
 2. Check rendering when `nextSession.status` is `chair_changed` (verify amber tint & original location callout).
 3. Check rendering when `nextSession.status` is `cancelled` (verify crimson tint).
 4. Verify responsive display on mobile and desktop viewports.
+5. Perform an Impeccable design critique / evaluation of the redesigned main card UI/UX to ensure visual excellence and compliance with design guidelines.
