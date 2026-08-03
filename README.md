@@ -5,8 +5,8 @@
 **Central Academic & Clinical Rotation Hub for Dentistry School Promotions**
 
 [![React](https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6.1-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-8.2-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.4-0055FF?style=flat-square&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
@@ -58,8 +58,8 @@ Built for fast-paced clinical environments where students move rapidly between l
 | Domain | Technology | Description |
 | :--- | :--- | :--- |
 | **Frontend Framework** | React 19 | UI components with modern hooks |
-| **Language** | TypeScript 5 | Full type safety across models and components |
-| **Build Tool & Server** | Vite 6 | Lightning-fast HMR and bundle optimization |
+| **Language** | TypeScript 7 | Full type safety across models and components |
+| **Build Tool & Server** | Vite 8 | Lightning-fast HMR and bundle optimization |
 | **Animations** | Framer Motion 12 | Smooth micro-interactions and tab transitions |
 | **Icons** | Lucide React | Modern clinical icon set |
 | **Backend & Sync** | LocalStorage & Supabase Ready | Instant client caching with edge service compatibility |
